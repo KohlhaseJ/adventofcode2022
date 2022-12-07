@@ -6,7 +6,6 @@ with open("C:\\dev\\advent-of-code\\day-4--camp-cleanup\\input.txt", "r") as fil
         line = line.replace("\n", "")
 
         range1, range2 = line.split(",")[::1]
-        print(range1, range2)
         min1, max1 = range1.split("-")
         rangeSet1 = set(range(int(min1), int(max1)+1))
         
