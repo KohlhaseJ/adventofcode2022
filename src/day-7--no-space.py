@@ -1,3 +1,5 @@
+import helper
+
 class Node():
     def __init__(self, key: str, value: int = 0):
         self.key = key
@@ -27,24 +29,23 @@ class Node():
 
 root = Node("/")
 currentNode = root
-with open("C:\\dev\\advent-of-code\\day-7--no-space\\input.txt", "r") as file:
-    for line in file:
-        line = line.replace("\n", "")
-        if line.startswith("$ cd"):
-            nextDir = line[5::]
-            if nextDir == "/":
-                currentNode = root
-            elif nextDir == "..":
-                currentNode = currentNode.parent
-            else:
-                currentNode = list(filter(lambda c: c.key == nextDir, currentNode.children))[0]
-        elif line.startswith("$ ls"):
-            continue
-        elif line.startswith("dir"):
-            childDir = line[4::]
-            currentNode.addNode(Node(childDir))
+for line in helper.get_input(7):
+    line = line.replace("\n", "")
+    if line.startswith("$ cd"):
+        nextDir = line[5::]
+        if nextDir == "/":
+            currentNode = root
+        elif nextDir == "..":
+            currentNode = currentNode.parent
         else:
-            currentNode.value += int(line.split()[0])
+            currentNode = list(filter(lambda c: c.key == nextDir, currentNode.children))[0]
+    elif line.startswith("$ ls"):
+        continue
+    elif line.startswith("dir"):
+        childDir = line[4::]
+        currentNode.addNode(Node(childDir))
+    else:
+        currentNode.value += int(line.split()[0])
 
 root.print()
 

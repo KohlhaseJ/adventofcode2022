@@ -1,14 +1,13 @@
+import helper
+
 map = []
 visibleElements = 0
 maxScenicScore = 0
 
-with open("C:\\dev\\advent-of-code\\day-8--tree-house\\input.txt", "r") as file:
-    for line in file:
-        line = line.replace("\n", "")
-        if len(line) > 0:
-            map.append([int(ch) for ch in line])
-
-#visibleElements += len(map)*2 + len(map[0])*2 - 4
+for line in helper.get_input(8):
+    line = line.replace("\n", "")
+    if len(line) > 0:
+        map.append([int(ch) for ch in line])
 
 for ri in range(len(map)):
     for ci in range(len(map[0])):
@@ -41,4 +40,3 @@ for ri in range(len(map)):
 
 print("visibleElements: {}".format(visibleElements))
 print("maxScenicScore: {}".format(maxScenicScore))
-
